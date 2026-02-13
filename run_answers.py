@@ -152,7 +152,18 @@ print(f"   Students DataFrame:\n{students}")
 
 # 15. Read data from CSV (skipped - file doesn't exist)
 print("\n15. Read data from CSV:")
-print("   (Skipped - requires students.csv file)")
+csv_path = 'students.csv'
+try:
+    students_csv = pd.read_csv(csv_path)
+    # normalize column names to lowercase for consistency
+    students_csv.columns = [c.strip().lower() for c in students_csv.columns]
+    print(f"   Loaded {csv_path}:\n{students_csv}")
+    # Replace the in-memory `students` DataFrame with CSV contents
+    students = students_csv
+except Exception as e:
+    print(f"   Could not read {csv_path}: {e}")
+    print("   Using previously defined `students` DataFrame (in-memory example).")
+
 
 # 16. Basic DataFrame info
 print("\n16. Basic DataFrame info:")
@@ -433,3 +444,4 @@ print("   - Summarize: df.describe(), groupby(), correlations")
 print("\n" + "=" * 60)
 print("All examples completed successfully!")
 print("=" * 60)
+
