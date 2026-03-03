@@ -1,4 +1,6 @@
-faiss-cpu
-numpy
+fastapi
+uvicorn
 requests
-python-dotenv
+numpy
+faiss-cpu
+
